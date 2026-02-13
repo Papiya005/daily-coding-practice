@@ -1,2 +1,2 @@
 # daily-coding-practice
-description
+daily coding, LeetCode, practice, algorithms
