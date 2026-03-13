@@ -1,0 +1,36 @@
+class Solution {
+
+    public long minNumberOfSeconds(int mountainHeight, int[] workerTimes) {
+
+        long left = 1;
+        long right = (long)1e16;
+
+        while (left < right) {
+            long mid = (left + right) / 2;
+
+            if (canReduce(mid, mountainHeight, workerTimes)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+
+    private boolean canReduce(long t, int mountainHeight, int[] workerTimes) {
+
+        long height = 0;
+
+        for (int w : workerTimes) {
+
+            long x = (long)(Math.sqrt((2.0 * t) / w + 0.25) - 0.5);
+            height += x;
+
+            if (height >= mountainHeight)
+                return true;
+        }
+
+        return false;
+    }
+}
