@@ -1,0 +1,61 @@
+class Solution {
+
+    long[] rows, columns;
+
+    public boolean canPartitionGrid(int[][] grid) {
+
+        int m = grid.length;
+        int n = grid[0].length;
+
+        rows = new long[m];
+        columns = new long[n];
+
+        long sum = getSum(grid, m, n);
+
+        // 🔹 Check row partition
+        long currSum = 0;
+        for (int i = 0; i < m; i++) {
+            currSum += rows[i];
+            if (currSum == sum - currSum) {
+                return true;
+            }
+        }
+
+        // 🔹 Check column partition
+        currSum = 0;
+        for (int j = 0; j < n; j++) {
+            currSum += columns[j];
+            if (currSum == sum - currSum) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    long getSum(int[][] grid, int m, int n) {
+
+        long sum = 0;
+
+        // Row sums
+        for (int i = 0; i < m; i++) {
+            long rowSum = 0;
+            for (int j = 0; j < n; j++) {
+                sum += grid[i][j];
+                rowSum += grid[i][j];
+            }
+            rows[i] = rowSum;
+        }
+
+        // Column sums
+        for (int j = 0; j < n; j++) {
+            long colSum = 0;
+            for (int i = 0; i < m; i++) {
+                colSum += grid[i][j];
+            }
+            columns[j] = colSum;
+        }
+
+        return sum;
+    }
+}
