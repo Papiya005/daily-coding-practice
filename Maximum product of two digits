@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProduct(int n) {
+        int lastDigit=0;
+        int largest=Integer.MIN_VALUE;
+        int secondlargest=Integer.MIN_VALUE;
+      while(n>0){
+        lastDigit=n%10;
+        
+        if(largest<lastDigit){
+            secondlargest=largest;
+            largest=lastDigit;
+
+        }
+        else if(lastDigit>secondlargest){
+            secondlargest=lastDigit;
+        }
+        n=n/10;
+      }
+      return largest*secondlargest;  
+    }
+}
