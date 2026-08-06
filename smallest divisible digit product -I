@@ -1,0 +1,24 @@
+class Solution {
+    public int smallestNumber(int n, int t) {
+        
+       
+        while(n>0){
+      int element=n;
+         int digit=1;
+        while(element>0){
+        digit=digit*(element%10);
+        element=element/10;
+        }
+        if(digit%t==0){
+            return n;
+        }
+        else{
+            n=n+1;
+        }
+        }
+        
+        return n;
+           
+    }
+       
+}
